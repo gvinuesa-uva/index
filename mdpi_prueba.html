@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resistencia Bajo Cero: El Futuro de la Memoria HfO2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deep: '#050b14',
+                        neon: '#00f3ff',
+                        plasma: '#bc13fe',
+                        surface: '#0f172a',
+                        textgray: '#94a3b8'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        tech: ['Orbitron', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050b14;
+            color: white;
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050b14; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f3ff; 
+        }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        .device-layer {
+            transition: all 0.3s ease;
+        }
+        .device-layer:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+        }
+
+        /* Simulation Canvas Styles */
+        #chartContainer {
+            position: relative;
+            height: 200px;
+            width: 100%;
+            border-left: 2px solid #334155;
+            border-bottom: 2px solid #334155;
+        }
+        .bar {
+            transition: height 0.3s ease, background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-deep/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-microchip text-neon text-2xl mr-2"></i>
+                    <span class="font-tech font-bold text-xl tracking-wider">Nano<span class="text-neon">Lab</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#contexto" class="hover:text-neon px-3 py-2 rounded-md text-sm font-medium transition-colors">Contexto</a>
+                        <a href="#estructura" class="hover:text-neon px-3 py-2 rounded-md text-sm font-medium transition-colors">Estructura</a>
+                        <a href="#simulacion" class="hover:text-neon px-3 py-2 rounded-md text-sm font-medium transition-colors">Simulación</a>
+                        <a href="#conclusiones" class="hover:text-neon px-3 py-2 rounded-md text-sm font-medium transition-colors">Conclusiones</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Abstract Background -->
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=2808&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-deep via-deep/80 to-transparent"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto fade-in-up">
+            <div class="inline-block px-4 py-1 mb-6 rounded-full border border-neon/30 bg-neon/10 text-neon text-xs font-tech tracking-widest uppercase">
+                Paper Review • Electronics MDPI
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold font-tech mb-6 leading-tight">
+                Memoria Resistiva en el <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon to-plasma glow-text">Cero Absoluto</span>
+            </h1>
+            <p class="text-xl text-textgray mb-10 font-light">
+                Descifrando el comportamiento de dispositivos HfO₂ a temperaturas criogénicas para la próxima generación de computación espacial y cuántica.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contexto" class="px-8 py-3 bg-neon text-deep font-bold rounded hover:bg-white transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(0,243,255,0.4)]">
+                    Explorar Estudio
+                </a>
+                <a href="#simulacion" class="px-8 py-3 border border-white/20 hover:border-neon hover:text-neon rounded transition-all">
+                    Ver Datos Interactivos
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contexto / Problema -->
+    <section id="contexto" class="py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl font-tech font-bold mb-6 text-white border-l-4 border-plasma pl-4">El Desafío Criogénico</h2>
+                    <p class="text-textgray mb-6 text-lg leading-relaxed">
+                        Los dispositivos electrónicos convencionales fallan en condiciones extremas. Sin embargo, la exploración espacial y la computación cuántica requieren hardware que funcione cerca del <strong>cero absoluto</strong>.
+                    </p>
+                    <p class="text-textgray mb-6 text-lg leading-relaxed">
+                        Este estudio analiza los dispositivos <strong>RRAM (Memoria de Acceso Aleatorio Resistiva)</strong> basados en Óxido de Hafnio (HfO₂). ¿La promesa? Dispositivos no volátiles, rápidos y, crucialmente, resistentes al frío extremo.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="bg-deep p-4 rounded border border-white/5">
+                            <i class="fa-solid fa-temperature-arrow-down text-neon text-2xl mb-2"></i>
+                            <h3 class="font-bold text-white">77 Kelvin</h3>
+                            <p class="text-sm text-textgray">Temperatura mínima probada (Nitrógeno Líquido).</p>
+                        </div>
+                        <div class="bg-deep p-4 rounded border border-white/5">
+                            <i class="fa-solid fa-atom text-plasma text-2xl mb-2"></i>
+                            <h3 class="font-bold text-white">HfO₂</h3>
+                            <p class="text-sm text-textgray">Material dieléctrico clave en la industria de chips.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <!-- Stylized visual of the problem -->
+                    <div class="absolute -inset-4 bg-gradient-to-r from-neon to-plasma opacity-20 blur-xl rounded-full"></div>
+                    <div class="relative bg-deep border border-white/10 p-8 rounded-xl shadow-2xl">
+                        <h3 class="font-tech text-xl mb-4 text-center">Aplicaciones Futuras</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center p-3 bg-surface rounded hover:bg-white/5 transition">
+                                <span class="w-8 h-8 flex items-center justify-center bg-neon/20 rounded-full mr-4 text-neon"><i class="fa-solid fa-shuttle-space"></i></span>
+                                <span>Electrónica Aeroespacial</span>
+                            </li>
+                            <li class="flex items-center p-3 bg-surface rounded hover:bg-white/5 transition">
+                                <span class="w-8 h-8 flex items-center justify-center bg-plasma/20 rounded-full mr-4 text-plasma"><i class="fa-solid fa-microchip"></i></span>
+                                <span>Circuitos de Control Cuántico</span>
+                            </li>
+                            <li class="flex items-center p-3 bg-surface rounded hover:bg-white/5 transition">
+                                <span class="w-8 h-8 flex items-center justify-center bg-blue-500/20 rounded-full mr-4 text-blue-400"><i class="fa-solid fa-brain"></i></span>
+                                <span>Computación Neuromórfica</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- La Estructura del Dispositivo -->
+    <section id="estructura" class="py-20 bg-deep relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-neon/5 blur-[100px]"></div>
+        <div class="max-w-5xl mx-auto px-4 text-center mb-16">
+            <h2 class="text-3xl font-tech font-bold mb-4">Arquitectura del Dispositivo</h2>
+            <p class="text-textgray">Fabricado mediante Deposición de Capa Atómica (ALD) para precisión nanométrica.</p>
+        </div>
+
+        <div class="max-w-2xl mx-auto px-4 flex flex-col gap-2">
+            <!-- Layers Animation -->
+            <div class="device-layer h-16 bg-gray-700 rounded-t-lg flex items-center justify-center border-b border-gray-600 relative overflow-hidden group">
+                <span class="relative z-10 font-bold tracking-widest">TiN (Electrodo Superior)</span>
+                <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            
+            <div class="device-layer h-12 bg-gray-500 flex items-center justify-center border-b border-gray-600 group relative">
+                <span class="relative z-10 font-bold text-sm">Ti (Capa "Gettering")</span>
+                <div class="absolute right-4 text-xs text-neon opacity-0 group-hover:opacity-100 transition-opacity">Absorbe Oxígeno</div>
+            </div>
+            
+            <div class="device-layer h-24 bg-gradient-to-r from-purple-900/50 to-blue-900/50 flex items-center justify-center border border-neon/30 relative group backdrop-blur-sm">
+                <span class="relative z-10 font-bold text-neon text-xl">HfO₂ (10 nm)</span>
+                <!-- Conductive Filament Animation -->
+                <div class="absolute w-[2px] h-full bg-white shadow-[0_0_10px_white] left-1/2 opacity-50 group-hover:opacity-100 transition-opacity animate-pulse"></div>
+                <div class="absolute right-4 text-xs text-textgray max-w-[150px] text-right opacity-0 group-hover:opacity-100 transition-opacity">
+                    Aquí ocurre la magia: Formación/Ruptura de filamentos conductores
+                </div>
+            </div>
+            
+            <div class="device-layer h-16 bg-gray-800 rounded-b-lg flex items-center justify-center border-t border-gray-600">
+                <span class="font-bold tracking-widest text-gray-400">W (Electrodo Inferior)</span>
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <p class="text-sm text-textgray italic"><i class="fa-solid fa-hand-pointer mr-2"></i>Pasa el ratón sobre las capas para ver detalles</p>
+        </div>
+    </section>
+
+    <!-- Simulador Interactivo de Resultados -->
+    <section id="simulacion" class="py-20 bg-surface border-y border-white/5">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl font-tech font-bold mb-4">Hallazgos: Temperatura vs. Voltaje</h2>
+                <p class="text-textgray max-w-2xl mx-auto">
+                    Uno de los descubrimientos clave es cómo cambia el voltaje necesario para "resetear" (apagar) la memoria al bajar la temperatura.
+                    <br>Usa el deslizador para simular los datos del artículo.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 bg-deep p-8 rounded-2xl border border-white/10 shadow-2xl">
+                <!-- Controls -->
+                <div class="lg:col-span-1 flex flex-col justify-center space-y-8">
+                    <div>
+                        <label for="tempSlider" class="block text-neon font-bold mb-4 text-lg">
+                            Temperatura: <span id="tempDisplay" class="text-white text-2xl ml-2">300</span> K
+                        </label>
+                        <input type="range" id="tempSlider" min="77" max="300" value="300" step="1" 
+                               class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-neon hover:accent-plasma transition-all">
+                        <div class="flex justify-between text-xs text-textgray mt-2 font-mono">
+                            <span>77K (Criogénico)</span>
+                            <span>300K (Ambiente)</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/5 p-4 rounded-lg border-l-2 border-neon">
+                        <h4 class="text-white font-bold mb-2 text-sm">¿Qué está pasando?</h4>
+                        <p id="explanationText" class="text-sm text-textgray leading-relaxed">
+                            A temperatura ambiente (300K), los iones de oxígeno tienen suficiente energía térmica para moverse fácilmente, facilitando la ruptura del filamento conductor.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Visualization -->
+                <div class="lg:col-span-2 relative flex flex-col items-center justify-center">
+                    <h3 class="text-white font-tech mb-6">Voltaje de Reset (Vreset)</h3>
+                    
+                    <!-- Chart Area -->
+                    <div id="chartContainer" class="flex items-end justify-center px-10 pb-0">
+                        <!-- Simulated Bar -->
+                        <div id="voltageBar" class="w-24 bg-gradient-to-t from-neon/20 to-neon rounded-t-lg relative group transition-all duration-300" style="height: 40%;">
+                            <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 text-white font-bold font-mono">
+                                -<span id="voltageValue">0.70</span> V
+                            </div>
+                            <div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 text-center">
+                        <p class="text-xs text-textgray uppercase tracking-widest">Magnitud del Voltaje Requerido</p>
+                    </div>
+
+                    <!-- Insight Badge -->
+                    <div id="insightBadge" class="mt-8 px-4 py-2 bg-plasma/20 text-plasma border border-plasma/50 rounded-full text-sm font-bold opacity-0 transition-opacity duration-500">
+                        <i class="fa-solid fa-triangle-exclamation mr-2"></i> Mayor energía requerida a baja temperatura
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusiones (Cards) -->
+    <section id="conclusiones" class="py-20 bg-deep">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-tech font-bold text-center mb-16">Conclusiones del Estudio</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group bg-surface p-8 rounded-xl border border-white/5 hover:border-neon/50 transition-all hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-neon/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-neon/20 transition">
+                        <i class="fa-solid fa-bolt text-neon text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Estabilidad del SET</h3>
+                    <p class="text-textgray text-sm leading-relaxed">
+                        Sorprendentemente, el proceso de "escritura" (SET) no depende fuertemente de la temperatura. Esto garantiza que grabar datos sea fiable incluso en el espacio profundo.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group bg-surface p-8 rounded-xl border border-white/5 hover:border-plasma/50 transition-all hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-plasma/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-plasma/20 transition">
+                        <i class="fa-solid fa-wave-square text-plasma text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Mecanismos de Conducción</h3>
+                    <p class="text-textgray text-sm leading-relaxed">
+                        En estado de baja resistencia (ON), la conducción es óhmica (como un cable metálico). En estado apagado (OFF), domina la emisión Schottky, influenciada por el campo eléctrico.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group bg-surface p-8 rounded-xl border border-white/5 hover:border-blue-400/50 transition-all hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition">
+                        <i class="fa-solid fa-check-double text-blue-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Viabilidad Tecnológica</h3>
+                    <p class="text-textgray text-sm leading-relaxed">
+                        Los dispositivos HfO₂ demostraron ser robustos y funcionales a 77K, validando su uso en arquitecturas híbridas superconductoras y aplicaciones aeroespaciales.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Citation -->
+    <footer class="bg-black py-12 border-t border-white/10">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h4 class="text-white font-tech mb-4">Referencia del Artículo</h4>
+            <div class="bg-white/5 p-6 rounded text-left text-textgray font-mono text-sm border-l-4 border-neon mb-8">
+                García, H., Boo, J., Vinuesa, G., Ossorio, Ó. G., Sahelices, B., Dueñas, S., Castán, H., González, M. B., & Campabadal, F. (2021). Influences of the Temperature on the Electrical Properties of HfO2-Based Resistive Switching Devices. <i>Electronics</i>, 10(22), 2816. <a href="https://doi.org/10.3390/electronics10222816" target="_blank" class="text-neon hover:underline break-all">https://doi.org/10.3390/electronics10222816</a>
+            </div>
+            
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-500 hover:text-white transition"><i class="fa-brands fa-github text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-white transition"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-white transition"><i class="fa-solid fa-envelope text-xl"></i></a>
+            </div>
+            <p class="text-gray-600 text-xs">
+                Diseño web de divulgación científica generado por IA para demostración.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.getElementById('tempSlider');
+            const tempDisplay = document.getElementById('tempDisplay');
+            const voltageBar = document.getElementById('voltageBar');
+            const voltageValue = document.getElementById('voltageValue');
+            const explanationText = document.getElementById('explanationText');
+            const insightBadge = document.getElementById('insightBadge');
+
+            // Data simulation based on the paper's trends
+            // Paper trend: As Temp decreases (300K -> 77K), Vreset increases (absolute value).
+            // Example: at 300K ~ -0.7V, at 77K ~ -1.1V (values are illustrative based on paper abstract logic)
+
+            function updateSimulation() {
+                const temp = parseInt(slider.value);
+                tempDisplay.textContent = temp;
+
+                // Calculate visual height percentage (Linear interpolation for demo)
+                // 300K -> 40% height, 77K -> 90% height
+                const percentage = 90 - ((temp - 77) / (300 - 77)) * 50;
+                
+                // Calculate voltage value
+                // 300K -> 0.70V, 77K -> 1.10V
+                const voltage = 1.10 - ((temp - 77) / (300 - 77)) * 0.40;
+
+                voltageBar.style.height = `${percentage}%`;
+                voltageValue.textContent = voltage.toFixed(2);
+
+                // Change color based on intensity
+                if(temp < 150) {
+                    voltageBar.classList.remove('from-neon/20', 'to-neon');
+                    voltageBar.classList.add('from-plasma/20', 'to-plasma');
+                    insightBadge.style.opacity = '1';
+                } else {
+                    voltageBar.classList.add('from-neon/20', 'to-neon');
+                    voltageBar.classList.remove('from-plasma/20', 'to-plasma');
+                    insightBadge.style.opacity = '0';
+                }
+
+                // Update text explanation
+                if(temp > 250) {
+                    explanationText.innerHTML = "A <strong>temperatura ambiente</strong>, la energía térmica ayuda a mover los iones de oxígeno. El voltaje necesario para romper el filamento es moderado.";
+                } else if (temp > 150) {
+                    explanationText.innerHTML = "A medida que <strong>baja la temperatura</strong>, se reduce la ayuda térmica. El campo eléctrico debe trabajar más fuerte para mover los iones.";
+                } else {
+                    explanationText.innerHTML = "A <strong>temperaturas criogénicas</strong>, la activación térmica es casi nula. Se requiere un <strong>voltaje mucho mayor (Vreset)</strong> para lograr la ruptura del filamento.";
+                }
+            }
+
+            slider.addEventListener('input', updateSimulation);
+            
+            // Initial call
+            updateSimulation();
+        });
+    </script>
+</body>
+</html>
